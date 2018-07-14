@@ -8,7 +8,7 @@
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <!-- Custom Styling -->
-    <link rel="stylesheet" href="../../public/assets/css/burger_style.css">
+    <link rel="stylesheet" href="/assets/css/burger_style.css">
   </head>
   <body>
   
@@ -38,7 +38,18 @@
           <div class="col-md-6">
             
             <div id="ready_to_eat">
-
+              {{#each burgers}}
+              {{#unless devoured}}
+              <form action="burger/eat/{{id}}" method="POST">
+                <div class="input-group">
+                  <li class="form-control">{{id}}. {{burger_name}}</li>
+                    <span class="input-group-btn">
+                      <button class="btn btn-success devour-button" type="submit">Devour It!</button>
+                    </span>
+                </div>
+              </form>
+              {{/unless}}
+            {{/each}}
             </div>
           </div>
 
@@ -46,7 +57,16 @@
           <div class="col-md-6">
     
             <div id="already_eaten">
-
+              {{#each burgers}}
+              {{#if this.devoured}}
+                <div class="input-group">
+                  <li class="form-control">{{this.id}}. {{this.burger_name}}</li>
+                  <span class="input-group-btn">
+                    <button class="btn btn-info done-button" type="button">Submit</button>
+                  </span>
+                </div>
+              {{/if}}
+            {{/each}}
             </div>
           </div>
         </center>
