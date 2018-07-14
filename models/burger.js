@@ -11,14 +11,14 @@ var burger = {
     });
   },
 
-  insertOne: function(burger_name, cb){
-    orm.insertOne("burgers",burger_name, function(res){
+  insertOne: function(col,data, cb){
+    orm.insertOne("burgers",col,data, function(res){
       cb(res);
     });
   },
 
   updateOne: function(id, cb){
-    orm.updateOne("burgers",id, function(res){
+    orm.updateOne("burgers",{devoured:true},id, function(res){
       cb(res);
     });
   }
